@@ -129,6 +129,7 @@ CpuBackendContext::CpuBackendContext()
       ruy_context_(new ruy::Context),
       gemmlowp_context_(new gemmlowp::GemmContext) {
   SetMaxNumThreads(kDefaultNumThreadpoolThreads);
+  ruy_context_->mutable_thread_pool()->set_spin_milliseconds(20);
 // TODO(b/148289189) Remove when clients have transitioned to runtime flag.
 #ifdef TFLITE_WITH_RUY_GEMV
   SetUseCaching(true);
