@@ -300,7 +300,7 @@ if(TFLITE_ENABLE_GPU)
     # OpenGL::GLES3 requires CMake 3.27
     find_package(OpenGL REQUIRED COMPONENTS GLES3)
     list(APPEND TFLITE_TARGET_DEPENDENCIES OpenGL::GLES3 ${OPENGL_egl_LIBRARY})
-  else()
+  elseif(NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Android")
     find_package(opengl_headers REQUIRED)
     find_package(egl_headers REQUIRED)
   endif()
