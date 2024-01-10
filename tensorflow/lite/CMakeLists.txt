@@ -302,7 +302,6 @@ if(TFLITE_ENABLE_GPU)
     populate_tflite_source_vars("async" TFLITE_ASYNC_SRCS FILTER "(_test)\\.(cc|h)$")
     list(APPEND TFLITE_DELEGATES_GPU_SRCS
       ${TFLITE_SOURCE_DIR}/delegates/gpu/android_version.cc
-      ${TFLITE_SOURCE_DIR}/delegates/gpu/android_hardware_buffer.cc
       ${TFLITE_SOURCE_DIR}/delegates/gpu/async_buffers.cc
       ${TFLITE_DELEGATES_UTILS_SRCS}
       ${TFLITE_ASYNC_SRCS}
