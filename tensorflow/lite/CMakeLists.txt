@@ -290,17 +290,7 @@ if(TFLITE_ENABLE_GPU)
   find_package(vulkan_headers REQUIRED)
   find_package(fp16_headers REQUIRED)
   # Android NDK already has OpenGL, EGL headers.
-  if(TFLITE_ENABLE_GLES3)
-    find_path(OPENGL_EGL_INCLUDE_DIRS "EGL/egl.h" REQUIRED)
-    find_library(OPENGL_egl_LIBRARY NAMES EGL libEGL REQUIRED)
-    find_path(OPENGL_INCLUDE_DIR "GLES3/gl3.h" REQUIRED) # "version 310 es"
-    find_path(OPENGL_GLES3_INCLUDE_DIR "GLES3/gl3.h" REQUIRED)
-    find_library(OPENGL_gles3_LIBRARY NAMES GLESv3 libGLESv3 GLESv2 libGLESv2 REQUIRED)
-    find_library(OPENGL_gl_LIBRARY NAMES GLESv3 libGLESv3 GLESv2 libGLESv2 REQUIRED)
-    # OpenGL::GLES3 requires CMake 3.27
-    find_package(OpenGL REQUIRED COMPONENTS GLES3)
-    list(APPEND TFLITE_TARGET_DEPENDENCIES OpenGL::GLES3 ${OPENGL_egl_LIBRARY})
-  elseif(NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Android")
+  if(NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Android")
     find_package(opengl_headers REQUIRED)
     find_package(egl_headers REQUIRED)
   endif()
